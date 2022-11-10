@@ -1,0 +1,90 @@
+Projet Python en binôme / Jeu de Puissance 4
+
+Instructions
+
+➔ Nom du fichier à créer : puissance4_nom1_nom2.py
+➔ Il faudra m’envoyer votre fichier par mail avant le lundi 14 novembre à
+minuit. Un retard entraînera un retrait de points.
+➔ Programmez le jeu en respectant les instructions (fonctions, etc).
+➔ Pensez à bien commenter votre code si nécessaire et à écrire les spécifications des
+fonctions.
+Mieux vaut un code incomplet qu’un code recopié
+Principe
+Le puissance 4 est un jeu bien connu à deux joueurs qui se joue sur une grille
+verticale de 6 lignes et 7 colonnes. A tour de rôle, chaque joueur fait tomber un pion
+de sa couleur dans une colonne de son choix non encore pleine. Le premier joueur
+qui aligne 4 pions de sa couleur, horizontalement, verticalement ou en diagonal,
+gagne la partie.
+
+Initialisation et étapes de développement
+Pour représenter une grille de ce jeu, on utilise un tableau à deux dimensions de
+taille 6x7, la première dimension représentant les lignes et la seconde les colonnes.
+Une ligne est notée l et prend une valeur entre 0 et 5, la ligne 0 étant située en bas
+; une colonne est notée c et prend une valeur entre 0 et 6, la colonne 0 étant située
+à gauche. Un joueur est noté j et prend la valeur 1 ou 2. Dans une grille, notée g ,
+la valeur 0 représente une case vide et la valeur 1 ou 2 représente un pion du joueur
+correspondant.
+1. Écrire une fonction grille_vide() qui renvoie une grille vide.
+Indications : Qu’obtient-on avec L = [0]*7 ?
+Comment obtenir une liste de 6 lignes de 7 zéros ?
+Indice : on peut utiliser une liste en compréhension pour définir un tableau de
+6 lignes et 7 colonnes rempli de 0.
+2. Écrire une fonction affiche() qui affiche une grille, avec le caractère . pour
+une case vide, le caractère X pour le joueur 1 et le caractère O pour le joueur
+2. On prendra soin d’afficher les lignes de haut en bas, c’est-à-dire que la ligne
+d’indice 5 sera la première à être affichée et celle d’indice 0 la dernière.
+
+Indications : la fonction affiche prend en argument une grille g. Il faut
+parcourir toutes les cases du tableau g : si une case contient un 1, on
+affichera le caractère ‘X’, si elle contient un 2, on affichera le caractère ‘O’ et si
+elle contient un 0, on affichera un point ‘.’ . Vous devrez utiliser deux boucles
+imbriquées, pour parcourir les lignes et les colonnes.
+3. Écrire une fonction coup_possible(g, c) qui renvoie un booléen indiquant s’il
+est possible de jouer dans la colonne c. Il est possible de jouer dans la
+colonne c si elle n’est pas déjà pleine, c’est-à-dire si la case la plus haute de la
+colonne c contient un zéro.
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+4. Ecrire une fonction jouer(g, j, c) qui joue un coup du joueur j dans la
+colonne c en supposant que la colonne c n’est pas pleine.
+Indication : la première case vide de la colonne c, en partant du bas
+(c’est-à-dire de plus petit indice) prendra la valeur j (1 ou 2 donc).
+
+5. Écrire 4 fonctions horiz(g, j, l, c), vert(g, j, l, c), diag1(g, j, l,
+c) et diag2(g, j, l, c) qui déterminent respectivement s’il y a un
+alignement de 4 pions du joueur j commençant à la case (l,c). Les 4
+fonctions renvoient un booléen (qui vaut True en cas d’alignement, False
+sinon).
+Précisément, les 3 pions permettant de réaliser un alignement avec le pion de
+la case (l,c) dans les fonctions horiz(g, j, l, c), vert(g, j, l, c) et
+diag1(g, j, l, c) sont situés dans les cases à droite ou au-dessus de
+(l,c). Dans la fonction diag2(g, j, l,c) , ils sont situés au-dessus à
+gauche.
+
+
+6. Écrire une fonction victoire(g,j) qui renvoie un booléen indiquant si le
+joueur j a gagné.
+
+7. Écrire une fonction match_nul(g) qui renvoie un booléen indiquant s’il y a
+match nul, c’est-à-dire si la grille est totalement remplie. Indication : on
+pourra se contenter d’examiner la ligne du haut.
+
+8. Écrire une fonction coup_aleatoire(g,j) qui joue un coup aléatoire pour le
+joueur j, en supposant que la grille n’est pas pleine.
+
+
+9. Écrire une fonction puissance4_2joueurs() qui utilise toutes les fonctions
+ci-dessus pour faire jouer deux adversaires aléatoirement et à tour de rôle, en
+affichant la grille après chaque coup, et qui s’arrête dès qu’un joueur gagne ou
+que la partie est nulle.
+
+
+10. Écrire enfin une fonction puissance4_1joueur() qui permet à l’utilisateur de
+jouer contre l’ordinateur qui joue aléatoirement, en affichant la grille après
+chaque coup et le résultat en fin de partie.
+
+Et maintenant, amusez-vous bien !
+Pour aller plus loin, écrire une stratégie de jeu pour l’ordinateur et
+l’implémenter.
