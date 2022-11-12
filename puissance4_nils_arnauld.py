@@ -211,8 +211,8 @@ def puissance4_2joueurs(pseudo1, pseudo2):
         while(not coup_possible(g, colonne)):
             colonne = demander_colonne(g, texte=("\x1b[31mJoueur 1\x1b[0m ( \x1b[31m" + pseudo1 + "\x1b[0m )" if joueur == 1 else "\x1b[34mJoueur 2\x1b[0m ( \x1b[34m"+pseudo2+"\x1b[0m )") + ", entrez le numéro de la colonne : ")
         jouer(g, joueur, colonne)
-        affiche(g, pseudo1, pseudo2, tour=joueur)
         joueur = 2 if joueur == 1 else 1
+        affiche(g, pseudo1, pseudo2, tour=joueur)
     affiche(g, pseudo1, pseudo2)
     if(victoire(g, 1)):
         won(g, 1, pseudo1, pseudo2)
