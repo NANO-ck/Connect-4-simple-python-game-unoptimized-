@@ -380,7 +380,8 @@ def play():
     elif(score2 > score1):
         typing_effect(pseudo2 + " a gagné la partie avec " + str(score2) + " manches gagnées face à " + str(score1) + " pour " + pseudo1)
     else:
-        typing_effect("La partie est nulle avec " + str(score1) + " manches gagnées pour chaque joueur")
+        typing_effect("Match nul avec " + str(score1) + " manches gagnées pour chaque joueur")
+    input("Appuyez sur une touche pour quitter...")
 
 
 def ask_integer(text): # Nous utilisons cette fonction pour être certain que l'utilisateur entre bien un nombre entier, et qu'on ait pas d'erreur
