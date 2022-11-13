@@ -5,7 +5,7 @@ import sys
 
 score1 = 0
 score2 = 0
-match_nul = 0
+matchNul = 0
 dernier_coup = (0, 0)
 
 
@@ -298,8 +298,8 @@ def end_match_nul(grille, pseudo1, pseudo2):
     Grille: grille, Pseudo1: str, Pseudo2: str => None
     Affiche le match nul
     """
-    global match_nul
-    match_nul = match_nul+1
+    global matchNul
+    matchNul = matchNul+1
     affiche(grille, pseudo1, pseudo2)
     print("Match nul !", end="")
     time.sleep(0.5)
@@ -353,7 +353,7 @@ def play():
     None => None
     Lance une partie
     """
-    global score1, score2, match_nul # On récupère les variables globales, déclarées en haut du programme
+    global score1, score2, matchNul # On récupère les variables globales, déclarées en haut du programme
     nb_manche = ask_integer("Combien de manches voulez-vous jouer ? ")
     if(nb_manche <= 0):
         typing_effect("Vous devez jouer au moins une manche !")
@@ -369,7 +369,7 @@ def play():
         os.system("cls||clear")
         typing_effect("Vous devez jouer à 1 ou 2 joueurs !")
         return play()
-    while(score1+score2+match_nul < nb_manche):
+    while(score1+score2+matchNul < nb_manche):
         if(nb_joueurs == 1):
             puissance4_1joueur(pseudo1, pseudo2)
         elif(nb_joueurs == 2):
