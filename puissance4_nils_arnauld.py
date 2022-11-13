@@ -10,20 +10,13 @@ dernier_coup = (0, 0)
 
 
 #  Écrire une fonction grille_vide() qui renvoie une grille vide.
-# Indications : Qu’obtient-on avec L = [0]*7 ?
-# Comment obtenir une liste de 6 lignes de 7 zéros ?
-# Indice : on peut utiliser une liste en compréhension pour définir un tableau de
 # 6 lignes et 7 colonnes rempli de 0.
-# Faire ce tableau avec une liste en compréhension
 
 def grille_vide():
     """Renvoie une grille vide"""
     return [[0 for i in range(7)] for j in range(6)]
 
-# Écrire une fonction affiche() qui affiche une grille, avec le caractère . pour une case vide, le caractère X pour le joueur 1 et le caractère O pour le joueur
-# On prendra soin d’afficher les lignes de haut en bas, c’est-à-dire que la ligne d’indice 5 sera la première à être affichée et celle d’indice 0 la dernière.
-# Indications : la fonction affiche prend en argument une grille g. Il faut parcourir toutes les cases du tableau g : si une case contient un 1, on affichera le caractère ‘X’, si elle contient un 2, on affichera le caractère ‘O’ et si elle contient un 0, on affichera un point ‘.’ . Vous devrez utiliser deux boucles imbriquées, pour parcourir les lignes et les colonnes.
-
+# Écrire une fonction affiche_grille(g) qui affiche la grille g
 def affiche(grille, pseudo1, pseudo2, tour=0):
     """
     grille: grille, pseudo1: str, pseudo2: str, tour: int => None
@@ -34,12 +27,12 @@ def affiche(grille, pseudo1, pseudo2, tour=0):
     print("\x1b[30;20m================\x1b[0m \033[1mPUISSANCE 4\x1b[0m\x1b[30;20m ================\x1b[0m")
     text = "\x1b[31mJoueur 1:\x1b[0m " + pseudo1
     print(text, end="")
-    print(" "*(50-len(text))+str(score1))
+    print(" "*(50-len(text))+str(score1)) # Utilisé pour aligner les scores des deux joueurs, peu importe la longueur de leur pseudo
     text = "\x1b[34mJoueur 2:\x1b[0m " + pseudo2
     print(text, end="")
     print(" "*(50-len(text))+str(score2))
     print("============================================")
-    if(tour != 0):
+    if(tour != 0): # Si jamais on veut afficher la grille sans afficher le tour actuel, pour la fin du jeu par exemple
         if(tour == 1):
             print("C'est au tour de \x1b[41m " + pseudo1 + " \x1b[0m\n")
         else:
@@ -58,7 +51,7 @@ def affiche(grille, pseudo1, pseudo2, tour=0):
                 print("\x1b[41m X \x1b[0m|", end='')
             elif(grille[ligne][colonne] == 2):
                 print("\x1b[44m O \x1b[0m|", end='')
-            elif(grille[ligne][colonne] == 3):
+            elif(grille[ligne][colonne] == 3): # Pour afficher les cases gagnantes à la fin du jeu
                 print("\x1b[42m + \x1b[0m|", end='')
             else:
                 print(" . |", end='')
@@ -88,11 +81,11 @@ def jouer(g, j, c):
     Joue un coup du joueur j dans la colonne c
     """
     global dernier_coup
-    for ligne in range(len(g)):
-        if(g[ligne][c] == 0):
+    for ligne in range(len(g)): # On parcourt les lignes de la grille, pour accéder à la première case vide de la colonne c
+        if(g[ligne][c] == 0): # Si la case est vide
             g[ligne][c] = j
-            dernier_coup = (ligne, c)
-            break
+            dernier_coup = (ligne, c) # On stocke la position du dernier coup joué, au cas où il faudrait l'annuler
+            break # On sort de la boucle, pour ne pas modifier les cases en dessous de la première case vide
     
     
 # Écrire 4 fonctions horiz(g, j, l, c), vert(g, j, l, c), diag1(g, j, l, c) et diag2(g, j, l, c) qui déterminent respectivement s’il y a un alignement de 4 pions du joueur j commençant à la case (l,c). Les 4 fonctions renvoient un booléen (qui vaut True en cas d’alignement, False sinon).
@@ -165,9 +158,9 @@ def match_nul(g):
     Vérifier si la grille est totalement remplie
     """
     for colonne in range(len(g[0])):
-        if(g[len(g)-1][colonne] == 0):
+        if(g[len(g)-1][colonne] == 0): # Si jamais on trouve une case de la dernière ligne qui fait exception
             return False
-    return True
+    return True # Si on a parcouru toute la dernière ligne sans exception, alors la grille est totalement remplie
 
 
 
@@ -397,7 +390,7 @@ def ask_integer(text): # Nous utilisons cette fonction pour être certain que l'
     """
     try:
         return int(input(text))
-    except ValueError:
+    except ValueError: # Si l'utilisateur n'a pas entré un nombre entier
         typing_effect("Veuillez entrer un nombre.")
         return ask_integer(text)
 
@@ -407,8 +400,8 @@ def typing_effect(text, speed=0.02): # Nous utilisons cette fonction pour faire 
     Affiche le texte en entrée caractère par caractère
     """
     for letter in text:
-        print(letter, end="")
-        sys.stdout.flush()
+        print(letter, end="") # On affiche le caractère
+        sys.stdout.flush() # On force l'affichage
         time.sleep(speed)
     print()
 
